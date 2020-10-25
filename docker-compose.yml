@@ -1,0 +1,42 @@
+version: '2.2'
+networks:
+  dev:
+    driver: bridge
+services:
+  moodle_db:
+    image: mysql:5
+    restart: always
+    networks:
+      - dev
+    volumes:
+      - './docker/data/dbdata:/var/lib/mysql:rw'
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_bin
+      --innodb_file_format=barracuda
+      --innodb_file_per_table=On
+      --innodb_large_prefix=On  
+    environment:
+      # MYSQL_RANDOM_ROOT_PASSWORD: "yes"
+      # MYSQL_ONETIME_PASSWORD: "yes"
+      MYSQL_DATABASE: $MOODLE_DB_NAME
+      MYSQL_ROOT_PASSWORD: $MOODLE_DB_PASSWORD
+      MYSQL_USER: $MOODLE_DB_USER
+      MYSQL_PASSWORD: $MOODLE_DB_PASSWORD
+    ports:
+      - '3307:3306'
+    expose:
+      - '3307'
+  moodle:
+    build: ./docker
+    cpus: "0.5"
+    restart: always
+    networks:
+      - dev
+    volumes:
+      #moodledata volume for shared moodledata, it will make the site slow with caching, recommended not to use this.
+      #in case using this, use redis cache, which will make the performance better.
+      # - './docker/data/moodledata:/var/www/moodledata'
+      - './docker/data/moodle:/var/www/html'
+    ports:
+      - '8082:80'
