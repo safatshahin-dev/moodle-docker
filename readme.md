@@ -1,2 +1,2 @@
-Moodle oneclick docker development environment creator.
+Moodle oneclick docker development environment.
 Detailed information coming soon.....
