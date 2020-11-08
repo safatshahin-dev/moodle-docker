@@ -27,8 +27,11 @@ Then go to the database, and import your dump in the databsae moodle_db.
 
 ## Environment details:
 Ubuntu 20.4
+
 PHP 7.4
+
 MYSQL 5
+
 APACHE
 
 ## Some feature:
