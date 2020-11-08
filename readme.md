@@ -43,7 +43,7 @@ Shared code base using volume, so that you can change your code base anytime.
 
 Moodledata is not shared, to make the performance better with caching. You can use shared moodledata, its already there in docker-compose, just change the commented lines.
 
-Self-signed ssl certifica - coming soon.
+Self-signed ssl certificate - coming soon.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
