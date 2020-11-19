@@ -29,14 +29,12 @@ services:
       - '3307'
   moodle:
     build: ./docker
-    cpus: "0.5"
+    # cpus: "0.5"
     restart: always
     networks:
       - dev
     volumes:
-      #moodledata volume for shared moodledata, it will make the site slow with caching, recommended not to use this.
-      #in case using this, use redis cache, which will make the performance better.
-      # - './docker/data/moodledata:/var/www/moodledata'
-      - './docker/data/moodle:/var/www/html'
+      - './docker/data/moodledata:/var/www/moodledata:cached'
+      - './docker/data/moodle:/var/www/html:cached'
     ports:
       - '8082:80'

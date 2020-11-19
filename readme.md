@@ -9,21 +9,34 @@ The script will ask you different options to select and also to type the moodle 
 
 It also allows you to use docker management console portainer. Try using that, it will make your docker life easier.
 
+To access the management console: use localhost on port 9000
+
+To access moodle: use localhost on port 8082
+
+To access the database: use localhost on port 3307
+
+The ports are used this way to make sure it does not conflict with your current development environment ports. 
+
+You can always change these ports from docker-compose.yml
+
 ## If you have an existing data:
-(moodledata and db dump) you want to use in your docker.
+(moodledata and db dump) you want to use in your docker
 
-Using your existing data is easy as well. Go to, moodle_docker/docker/data/filedir
+using your existing data is easy as well. Go to, moodle_docker/docker/data
 
-Paste your directories inside filedir in this folder, and just run the oneclick.sh
+paste your moodledata here
 
-If you have your own code base, put your code base inside the folder moodle_docker/docker/data/moodle
+if you have your own code base, put your code base inside the folder moodle_docker/docker/data/moodle
 
 copy the config.php to the following file inside moodle_docker/docker/data/moodle
 
-Come back to moodle_docker, and run docker-compose up
+if you have your db data from another docker, go to moodle_docker/docker/data
 
-Then go to the database, and import your dump in the databsae moodle_db.
+create a directory dbdata and paste those data inside this directory, or else just create and keep it empty
 
+come back to moodle_docker, and run docker-compose up
+
+then go to the database, and import your dump in the databsae moodle_db if you had your dbdata directory empty
 
 ## Environment details:
 Ubuntu 20.4

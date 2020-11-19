@@ -42,13 +42,14 @@ RUN crontab /etc/cron.d/cron
 RUN touch /var/log/cron.log
 RUN cron
 #moodledata to connect from volume
-RUN mkdir /var/www/moodledata && chown www-data /var/www/moodledata
-RUN mkdir /var/www/moodledata/filedir && chown www-data /var/www/moodledata/filedir
+RUN mkdir /var/www/moodledata
+# RUN mkdir /var/www/moodledata && chown www-data /var/www/moodledata
+# RUN mkdir /var/www/moodledata/filedir && chown www-data /var/www/moodledata/filedir
 #custom php.ini
 COPY php.ini /etc/php/7.4/apache2/php.ini
 #filedir to moodledata inside container, for better caching, if you want to use shared moodledata, comment this line
-ADD /data/filedir/* /var/www/moodledata/filedir/
-RUN chmod -R 777 /var/www/moodledata
+# ADD /data/filedir/* /var/www/moodledata/filedir/
+# RUN chmod -R 777 /var/www/moodledata
 #entrypoint commands after server start
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh

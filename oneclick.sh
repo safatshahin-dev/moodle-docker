@@ -49,6 +49,12 @@ gitlabpull+="@"
 gitlabpull+=$gitlaburl
 echo $gitlabpull
 git clone -b $gitlabbranch $gitlabpull ./docker/data/moodle
+;;
+*)
+echo "Sorry, invalid input." 
+exit 1
+;;
+esac
 
 echo "Did you have the code base downloaded properly?"
 echo "1. Yes 2. No"
@@ -57,13 +63,13 @@ case $codebase in
 "1")
 cp ./docker/data/config.php ./docker/data/moodle
 #use the following if you want to use shared moodledata folder
-# mkdir ./docker/data/moodledata
-# chmod -R 777 ./docker/data/moodledata
+mkdir ./docker/data/moodledata
+chmod -R 777 ./docker/data/moodledata
 mkdir ./docker/data/dbdata
 docker-compose up
 ;;
 "2")
-echo "Check the git repo and re-run the script." 
+echo "Check the git repo and re-run the script, make sure you delete any invalid code base in /docker/data/" 
 exit 1
 ;;
 *)
@@ -71,11 +77,3 @@ echo "Sorry, invalid input."
 exit 1
 ;;
 esac
-
-;;
-*)
-echo "Sorry, invalid input." 
-exit 1
-;;
-esac
-
