@@ -19,6 +19,14 @@ The ports are used this way to make sure it does not conflict with your current 
 
 You can always change these ports from docker-compose.yml
 
+For ssl certificate, go to docker and run the following command:
+openssl req -x509 -newkey rsa:4086 \
+-keyout key.pem -out cert.pem \
+-days 3650 -nodes -sha256
+
+it will generate the cert and key for self signed certificate.
+access the site via https://localhost:8443
+
 ## If you have an existing data:
 (moodledata and db dump) you want to use in your docker
 
@@ -54,9 +62,9 @@ Uses the production php configuration (e.g fileupload limit to 8gb)
 
 Shared code base using volume, so that you can change your code base anytime.
 
-moodledata is not shared
+moodledata is shared
 
-Self-signed ssl certificate - check the branch with ssl
+ssl certificate
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
