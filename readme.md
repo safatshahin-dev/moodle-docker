@@ -54,9 +54,9 @@ Uses the production php configuration (e.g fileupload limit to 8gb)
 
 Shared code base using volume, so that you can change your code base anytime.
 
-Moodledata is not shared, to make the performance better with caching. You can use shared moodledata, its already there in docker-compose, just change the commented lines.
+moodledata is not shared
 
-Self-signed ssl certificate - coming soon.
+Self-signed ssl certificate - check the branch with ssl
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
