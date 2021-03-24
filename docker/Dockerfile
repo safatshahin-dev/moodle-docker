@@ -53,8 +53,9 @@ RUN sed -i 's/^ServerSignature/#ServerSignature/g' /etc/apache2/conf-enabled/sec
 
 ADD 000-default.conf /etc/apache2/sites-enabled/000-default.conf
 ADD 001-default-ssl.conf /etc/apache2/sites-enabled/001-default-ssl.conf
-COPY cert.pem /etc/apache2/external/cert.pem
-COPY key.pem /etc/apache2/external/key.pem
+#uncomment if you are using your own key
+#COPY cert.pem /etc/apache2/external/cert.pem
+#COPY key.pem /etc/apache2/external/key.pem
 #crontab
 RUN apt-get update && apt-get -y install cron
 COPY cron /etc/cron.d/cron
