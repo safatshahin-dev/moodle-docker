@@ -15,10 +15,8 @@ services:
       --collation-server=utf8mb4_bin
       --innodb_file_format=barracuda
       --innodb_file_per_table=On
-      --innodb_large_prefix=On  
+      --innodb_large_prefix=On
     environment:
-      # MYSQL_RANDOM_ROOT_PASSWORD: "yes"
-      # MYSQL_ONETIME_PASSWORD: "yes"
       MYSQL_DATABASE: $MOODLE_DB_NAME
       MYSQL_ROOT_PASSWORD: $MOODLE_DB_PASSWORD
       MYSQL_USER: $MOODLE_DB_USER
@@ -29,7 +27,6 @@ services:
       - '3307'
   moodle:
     build: ./docker
-    # cpus: "0.5"
     restart: always
     networks:
       - dev

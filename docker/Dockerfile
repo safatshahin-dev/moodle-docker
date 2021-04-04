@@ -33,7 +33,7 @@ RUN cd /usr/local/lib/ && curl -sS https://getcomposer.org/installer | php && mv
 
 #apache servername to resolve host
 RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
-# RUN echo "127.0.0.1 localunixsocket.local" >> /etc/hosts
+
 #crontab
 RUN apt-get update && apt-get -y install cron
 COPY cron /etc/cron.d/cron
@@ -41,8 +41,10 @@ RUN chmod 0644 /etc/cron.d/cron
 RUN crontab /etc/cron.d/cron
 RUN touch /var/log/cron.log
 RUN cron
+
 #moodledata to connect from volume
 RUN mkdir /var/www/moodledata
+#filedir to moodledata inside container, for better caching, if you want to use shared moodledata, comment this line
 # RUN mkdir /var/www/moodledata && chown www-data /var/www/moodledata
 # RUN mkdir /var/www/moodledata/filedir && chown www-data /var/www/moodledata/filedir
 #custom php.ini
