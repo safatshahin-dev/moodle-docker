@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Would you like to use docker managerment console (Portainer)?"
+echo "Would you like to use docker management console (Portainer)?"
 echo "1. Yes 2. No"
 read console
 case $console in
@@ -23,12 +23,12 @@ exit 1
 esac
 
 echo "Which moodle code base you want to use?"
-echo "1. From moodle git reposiroty."
-echo "2. From a private gitlab reposiroty."
+echo "1. From moodle git repository."
+echo "2. From a private gitlab repository."
 read repo
 case $repo in
 "1")
-echo echo "Enter the branch name (e.g. MOODLE_39_STABLE)" 
+echo echo "Enter the branch name (e.g. MOODLE_39_STABLE)"
 read moodlebranch
 git clone -b $moodlebranch https://github.com/moodle/moodle.git ./docker/data/moodle
 ;;
@@ -51,7 +51,7 @@ echo $gitlabpull
 git clone -b $gitlabbranch $gitlabpull ./docker/data/moodle
 ;;
 *)
-echo "Sorry, invalid input." 
+echo "Sorry, invalid input."
 exit 1
 ;;
 esac
@@ -65,15 +65,19 @@ cp ./docker/data/config.php ./docker/data/moodle
 #use the following if you want to use shared moodledata folder
 mkdir ./docker/data/moodledata
 chmod -R 777 ./docker/data/moodledata
+mkdir ./docker/data/testmoodledata
+chmod -R 777 ./docker/data/testmoodledata
 mkdir ./docker/data/dbdata
+mkdir ./docker/data/testdbdata
+
 docker-compose up
 ;;
 "2")
-echo "Check the git repo and re-run the script, make sure you delete any invalid code base in /docker/data/" 
+echo "Check the git repo and re-run the script, make sure you delete any invalid code base in /docker/data/"
 exit 1
 ;;
 *)
-echo "Sorry, invalid input." 
+echo "Sorry, invalid input."
 exit 1
 ;;
 esac

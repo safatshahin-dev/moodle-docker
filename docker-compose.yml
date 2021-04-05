@@ -2,7 +2,9 @@ version: '2.2'
 networks:
   dev:
     driver: bridge
+
 services:
+
   moodle_db:
     image: mysql:5
     restart: always
@@ -25,6 +27,30 @@ services:
       - '3307:3306'
     expose:
       - '3307'
+
+  test_db:
+    image: mysql:5
+    restart: always
+    networks:
+      - dev
+    volumes:
+      - './docker/data/testdbdata:/var/lib/mysql:rw'
+    command: >
+      --character-set-server=utf8mb4
+      --collation-server=utf8mb4_bin
+      --innodb_file_format=barracuda
+      --innodb_file_per_table=On
+      --innodb_large_prefix=On
+    environment:
+      MYSQL_DATABASE: $TEST_MOODLE_DB_NAME
+      MYSQL_ROOT_PASSWORD: $TEST_MOODLE_DB_PASSWORD
+      MYSQL_USER: $TEST_MOODLE_DB_USER
+      MYSQL_PASSWORD: $TEST_MOODLE_DB_PASSWORD
+    ports:
+      - '3308:3306'
+    expose:
+      - '3308'
+
   moodle:
     build: ./docker
     restart: always
@@ -33,5 +59,6 @@ services:
     volumes:
       - './docker/data/moodledata:/var/www/moodledata:cached'
       - './docker/data/moodle:/var/www/html:cached'
+      - './docker/data/testmoodledata:/var/www/testmoodledata:cached'
     ports:
       - '8082:80'

@@ -18,6 +18,20 @@ $CFG->dboptions = array (
   'dbsocket' => '',
 );
 
+$CFG->phpunit_dbtype = 'mysqli';
+$CFG->phpunit_dblibrary = 'native';
+$CFG->phpunit_dbhost    = 'test_db';
+$CFG->phpunit_dbname    = 'test_db';
+$CFG->phpunit_dbuser    = 'test_db';
+$CFG->phpunit_dbpass    = 'testmoodlepass';
+$CFG->phpunit_prefix    = 'phpu_';
+$CFG->phpunit_dboptions = array (
+    'dbpersist' => 0,
+    'dbport' => '',
+    'dbsocket' => '',
+);
+$CFG->phpunit_dataroot = '/var/www/testmoodledata';
+
 $CFG->wwwroot   = 'http://localhost:8082';
 $CFG->dataroot = '/var/www/moodledata';
 $CFG->admin     = 'admin';
