@@ -15,7 +15,7 @@ To access moodle: use localhost on port 8082
 
 To access the database: use localhost on port 3307
 
-The ports are used this way to make sure it does not conflict with your current development environment ports. 
+The ports are used this way to make sure it does not conflict with your current development environment ports.
 
 You can always change these ports from docker-compose.yml
 
@@ -57,6 +57,8 @@ Shared code base using volume, so that you can change your code base anytime.
 moodledata is not shared
 
 Self-signed ssl certificate - check the branch with ssl
+
+php unit testing support - check the branch with phpunit at the end
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
